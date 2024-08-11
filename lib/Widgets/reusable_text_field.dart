@@ -349,48 +349,45 @@ class _ReusablePhoneTextFieldState extends State<ReusablePhoneTextField> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Directionality(
-              textDirection: TextDirection.ltr,
-              child: SizedBox(
-                width:MediaQuery.of(context).size.width - 185,
-                child: TextFormField(
-                  autocorrect: false,
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
-                  controller: widget.textEditingController,
-                  enabled: widget.isEnable,
-                  maxLines: widget.maxLines,
-                  cursorColor: Colors.black,
-                  decoration: InputDecoration(
-                    hintText: widget.hint,
-                    // labelStyle: TextStyle(
-                    //   color: kBasicColor
-                    // ),
-                    filled: true,
-                    fillColor: Colors.white,
-                    contentPadding: const EdgeInsets.fromLTRB(10, 0, 25, 5),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide:
-                      BorderSide(color: Colors.black.withOpacity(0.1), width: 1),
-                      borderRadius: BorderRadius.all(Radius.circular(widget.radius)),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide:
-                      const BorderSide(color: kBasicColor, width: 1),
-                      borderRadius: BorderRadius.all(Radius.circular(widget.radius)),
-                    ),
-                    errorStyle: const TextStyle(
-                      fontSize: 10.0,
-                    ),
-                    focusedErrorBorder:  OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(widget.radius)),
-                      borderSide: const BorderSide(width: 1, color: Colors.red),
-                    ),
+            SizedBox(
+              width:MediaQuery.of(context).size.width - 185,
+              child: TextFormField(
+                autocorrect: false,
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                controller: widget.textEditingController,
+                enabled: widget.isEnable,
+                maxLines: widget.maxLines,
+                cursorColor: Colors.black,
+                decoration: InputDecoration(
+                  hintText: widget.hint,
+                  // labelStyle: TextStyle(
+                  //   color: kBasicColor
+                  // ),
+                  filled: true,
+                  fillColor: Colors.white,
+                  contentPadding: const EdgeInsets.fromLTRB(10, 0, 25, 5),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide:
+                    BorderSide(color: Colors.black.withOpacity(0.1), width: 1),
+                    borderRadius: BorderRadius.all(Radius.circular(widget.radius)),
                   ),
-                  validator: (value) {
-                    return widget.validationFunc(value);
-                  },
-                  onChanged: (value) => widget.onChangedFunc(value),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide:
+                    const BorderSide(color: kBasicColor, width: 1),
+                    borderRadius: BorderRadius.all(Radius.circular(widget.radius)),
+                  ),
+                  errorStyle: const TextStyle(
+                    fontSize: 10.0,
+                  ),
+                  focusedErrorBorder:  OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(widget.radius)),
+                    borderSide: const BorderSide(width: 1, color: Colors.red),
+                  ),
                 ),
+                validator: (value) {
+                  return widget.validationFunc(value);
+                },
+                onChanged: (value) => widget.onChangedFunc(value),
               ),
             ),
             SizedBox(

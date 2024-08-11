@@ -7,6 +7,7 @@ import 'Controller/ServicesController/services_controller.dart';
 import 'Screens/add_order_screen.dart';
 import 'Screens/responses.dart';
 import 'Screens/splash_screen.dart';
+import 'Translation/localization/localization.dart';
 
 
 
@@ -29,7 +30,9 @@ class MyApp extends StatelessWidget {
         fontFamily: 'Cairo',
         useMaterial3: true,
       ),
-      // home:const SplashScreen(),
+      translations: AppLocalization(),
+      locale: const Locale('ar'),
+      fallbackLocale: const Locale('ar'),
       initialRoute: '/',
       getPages: [
         GetPage(name: '/', page: () => const SplashScreen()),

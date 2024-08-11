@@ -10,9 +10,9 @@ class CommonWidgets {
         message,
         // maxWidth: 500,
         snackPosition: SnackPosition.TOP,
-        backgroundColor: type == 'error' ? Colors.red : Colors.green,
+        backgroundColor: type == 'error'.tr ? Colors.red : Colors.green,
         colorText:Colors.white, //type == 'error' ?Colors.white : TypographyColor.titleTable,
-        icon: Icon(type == 'error'?Icons.error:Icons.check_circle, color: Colors.white),
+        icon: Icon(type == 'error'.tr ?Icons.error:Icons.check_circle, color: Colors.white),
     );
   }
 

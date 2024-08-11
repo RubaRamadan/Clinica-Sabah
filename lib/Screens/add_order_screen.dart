@@ -45,313 +45,260 @@ class _AddOrderScreenState extends State<AddOrderScreen> {
     final deviceWidth = MediaQuery.of(context).size.width ;
     final deviceHeight = MediaQuery.of(context).size.height ;
     return GetBuilder<ServicesController>(builder: (cont) {
-      return Directionality(
-        textDirection: TextDirection.rtl,
-        child: Scaffold(
-            backgroundColor: kBgColor,
-            floatingActionButton: Padding(
-              padding:
-              const EdgeInsets.symmetric(horizontal: 5.0, vertical: 10),
-              child: FloatingActionButton(
-                onPressed: () async {
-                  Uri url = Uri(scheme: "tel", path: phoneNumber);
-                  if (await canLaunchUrl(url)) {
-                    await launchUrl(url);
-                  } else {
+      return Scaffold(
+          backgroundColor: kBgColor,
+          floatingActionButton: Padding(
+            padding:
+            const EdgeInsets.symmetric(horizontal: 5.0, vertical: 10),
+            child: FloatingActionButton(
+              onPressed: () async {
+                Uri url = Uri(scheme: "tel", path: phoneNumber);
+                if (await canLaunchUrl(url)) {
+                  await launchUrl(url);
+                } else {
 
-                  }
-                },
-                shape: const CircleBorder(),
-                backgroundColor: kBasicColor,
-                child: const Icon(
-                  Icons.phone,
-                  color: Colors.white,
-                ),
+                }
+              },
+              shape: const CircleBorder(),
+              backgroundColor: kBasicColor,
+              child: const Icon(
+                Icons.phone,
+                color: Colors.white,
               ),
             ),
-            body: SingleChildScrollView(
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Image.asset(
-                          "assets/images/logo.png",
-                          height:deviceHeight * 0.1,
-                          width:deviceWidth * 0.2,
-                          fit: BoxFit.contain,
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    width: deviceWidth,
-                    height: deviceHeight,
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 25, vertical: 15),
-                    decoration: const BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage("assets/images/dr.photo.png"),
+          ),
+          body: SingleChildScrollView(
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Image.asset(
+                        "assets/images/logo.png",
+                        height:deviceHeight * 0.1,
+                        width:deviceWidth * 0.2,
                         fit: BoxFit.contain,
                       ),
+                    ],
+                  ),
+                ),
+                Container(
+                  width: deviceWidth,
+                  height: deviceHeight,
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 25, vertical: 15),
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage("assets/images/dr.photo.png"),
+                      fit: BoxFit.contain,
                     ),
-                    child: Column(
-                      children: [
-                        SizedBox(
-                          height: deviceHeight * 0.45,
+                  ),
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: deviceHeight * 0.45,
+                      ),
+                      Container(
+                        color: Colors.white.withOpacity(0.9),
+                        width: deviceHeight * 0.8,
+                        height: deviceHeight * 0.2,
+                        child: const Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              kFirstPhrase,
+                              textAlign: TextAlign.center,
+                              style:
+                              TextStyle(color: kBasicColor, fontSize: 18),
+                            ),
+                            Text(
+                              kSecondPhrase,
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 25),
+                            ),
+                          ],
                         ),
-                        Container(
-                          color: Colors.white.withOpacity(0.9),
-                          width: deviceHeight * 0.8,
-                          height: deviceHeight * 0.2,
-                          child: const Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
+                      ),
+                      ReusableButton(
+                          btnText: 'call_us'.tr,
+                          onTapFunction: () async {
+                            Uri url = Uri(scheme: "tel", path: phoneNumber);
+                            if (await canLaunchUrl(url)) {
+                              await launchUrl(url);
+                            } else {
+
+                            }
+                          },
+                          width: 150,
+                          height: deviceHeight * 0.07)
+                    ],
+                  ),
+                ),
+                Container(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 15, vertical: 15),
+                  child: Column(
+                    children: [
+                      const Text(
+                        kThirdPhrase,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            color: kBasicColor,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 25),
+                      ),
+                      gapH6,
+                      const Text(
+                        kForthPhrase,
+                        // textAlign: TextAlign.center,
+                        style: TextStyle(
+                            wordSpacing: 2,
+                            color: Colors.black,
+                            fontSize: 20),
+                      ),
+                      SizedBox(
+                        height: deviceHeight * 0.1,
+                      ),
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 15, vertical: 25),
+                        decoration: BoxDecoration(
+                            border:
+                            Border.all(color: kBorderColor, width: 2)),
+                        child: Form(
+                          key: _formKey,
+                          autovalidateMode:
+                          AutovalidateMode.onUserInteraction,
+                          child: Column(
                             children: [
-                              Text(
-                                kFirstPhrase,
-                                textAlign: TextAlign.center,
-                                style:
-                                TextStyle(color: kBasicColor, fontSize: 18),
+                                Padding(
+                                padding: const EdgeInsets.only(left: 15.0),
+                                child: Text(
+                                  'choose_services'.tr,
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 20),
+                                ),
                               ),
-                              Text(
-                                kSecondPhrase,
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 25),
+                              Scrollbar(
+                               thumbVisibility: true,
+                                controller: scrollBarController,
+                                child: SizedBox(
+                                  height: 500,//cont.servicesList.length *(deviceHeight * 0.14),
+                                  child: ListView.builder(
+                                    controller: scrollBarController,
+                                    itemCount: cont.servicesList.length,
+                                    itemBuilder: (context, index) =>
+                                        ReusableServiceCard(
+                                          index: index,
+                                          onChangedFunc: (value) {
+                                            cont.setCheckService(value, index);
+                                          },
+                                        ),
+                                  ),
+                                ),
                               ),
+                              gapH20,
+                              ReusableInputNumberField(
+                                  onChangedFunc: (val) {},
+                                  validationFunc: (val) {
+                                    if (val.isEmpty) {
+                                      return 'required_field'.tr;
+                                    }
+                                    return null;
+                                  },
+                                  text:
+                                  '${'what_is_budget'.tr} *',
+                                  controller: budgetController),
+                              gapH20,
+                              ReusableTextField(
+                                  onChangedFunc: (val) {},
+                                  validationFunc: (val) {},
+                                  hint: '',
+                                  maxLines: 6,
+                                  textEditingController: noteController,
+                                  text:
+                                  'share_note'.tr),
+                              gapH20,
+                              ReusableButton(
+                                  btnText: 'design_cosmetic_package'.tr,
+                                  onTapFunction: () async{
+                                    cont.convertListToString();
+                                    if(cont.selectedServicesString==''){
+                                      CommonWidgets.snackBar(
+                                          'error'.tr, 'must_choose_services'.tr);
+                                    }else if(_formKey.currentState!.validate()){
+                                      LoadingDialogHelper.showLoadingDialog();
+                                      var res=await addOrder(
+                                          balance: budgetController.text,
+                                          note: noteController.text ,
+                                          userId: id,
+                                          services: cont.selectedServicesString);
+                                      LoadingDialogHelper.hideLoading();
+                                      if (res['status'] == '1') {
+                                        CommonWidgets.snackBar(
+                                            'success'.tr, res['message']);
+                                      } else {
+                                        CommonWidgets.snackBar(
+                                            'error'.tr, res['data']);
+                                      }
+                                    }
+                                  },
+                                  width: deviceWidth,
+                                  height: deviceHeight * 0.06)
                             ],
                           ),
                         ),
-                        ReusableButton(
-                            btnText: 'اتصلي بنا',
-                            onTapFunction: () async {
-                              Uri url = Uri(scheme: "tel", path: phoneNumber);
-                              if (await canLaunchUrl(url)) {
-                                await launchUrl(url);
-                              } else {
+                      ),
 
-                              }
-                            },
-                            width: 150,
-                            height: deviceHeight * 0.07)
-                      ],
-                    ),
+                    ],
                   ),
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 15, vertical: 15),
-                    child: Column(
-                      children: [
-                        const Text(
-                          kThirdPhrase,
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              color: kBasicColor,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 25),
-                        ),
-                        gapH6,
-                        const Text(
-                          kForthPhrase,
-                          // textAlign: TextAlign.center,
-                          style: TextStyle(
-                              wordSpacing: 2,
-                              color: Colors.black,
-                              fontSize: 20),
-                        ),
-                        SizedBox(
-                          height: deviceHeight * 0.1,
-                        ),
-                        Container(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 15, vertical: 25),
-                          decoration: BoxDecoration(
-                              border:
-                              Border.all(color: kBorderColor, width: 2)),
-                          child: Form(
-                            key: _formKey,
-                            autovalidateMode:
-                            AutovalidateMode.onUserInteraction,
-                            child: Column(
-                              children: [
-                                // ReusableTextField(
-                                //     onChangedFunc: (val) {},
-                                //     validationFunc: (val) {
-                                //       _formKey.currentState!.validate(); //todo
-                                //       if (val.isEmpty) {
-                                //         return 'هذا الحقل مطلوب .';
-                                //       }
-                                //       return null;
-                                //     },
-                                //     hint: '',
-                                //     textEditingController: nameController,
-                                //     text: 'الاسم الكامل *'),
-                                // gapH20,
-                                // ReusableTextField(
-                                //     onChangedFunc: (val) {},
-                                //     validationFunc: (val) {
-                                //       if (val.isEmpty) {
-                                //         return 'هذا الحقل مطلوب .';
-                                //       }
-                                //       return null;
-                                //     },
-                                //     hint: '',
-                                //     textEditingController: phoneController,
-                                //     text: 'رقم الموبايل *'),
-                                // gapH20,
-                                // ReusableDropDownMenu(
-                                //   list: cities,
-                                //   text: 'الدولة: *',
-                                //   onSelected: (val) {
-                                //     setState(() {
-                                //       selectedCity = val;
-                                //     });
-                                //   },
-                                //   hint: 'الرجاء اختيار الدولة',
-                                //   validationFunc: (String? val) {
-                                //     //todo
-                                //     // if(val!.isEmpty){
-                                //     //   return 'الرجاء اختيار الدولة';
-                                //     // }
-                                //     // return null;
-                                //   },
-                                // ),
-                                // gapH20,
-                                // ReusableTextField(
-                                //     onChangedFunc: (val) {},
-                                //     validationFunc: (val) {},
-                                //     hint: '',
-                                //     textEditingController: emailController,
-                                //     text: 'البريد الإلكتروني'),
-                                // gapH20,
-                                const Padding(
-                                  padding: EdgeInsets.only(left: 15.0),
-                                  child: Text(
-                                    'اختاري الخدمات التجميلية التي ترغبين بها!',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 20),
-                                  ),
-                                ),
-                                Scrollbar(
-                                 thumbVisibility: true,
-                                  controller: scrollBarController,
-                                  child: SizedBox(
-                                    height: 500,//cont.servicesList.length *(deviceHeight * 0.14),
-                                    child: ListView.builder(
-                                      controller: scrollBarController,
-                                      itemCount: cont.servicesList.length,
-                                      itemBuilder: (context, index) =>
-                                          ReusableServiceCard(
-                                            index: index,
-                                            onChangedFunc: (value) {
-                                              cont.setCheckService(value, index);
-                                            },
-                                          ),
-                                    ),
-                                  ),
-                                ),
-                                gapH20,
-                                ReusableInputNumberField(
-                                    onChangedFunc: (val) {},
-                                    validationFunc: (val) {
-                                      if (val.isEmpty) {
-                                        return 'هذا الحقل مطلوب .';
-                                      }
-                                      return null;
-                                    },
-                                    text:
-                                    'ماهي ميزانيتك لتصميم الباقة؟ (بالدرهم الإماراتي) *',
-                                    controller: budgetController),
-                                gapH20,
-                                ReusableTextField(
-                                    onChangedFunc: (val) {},
-                                    validationFunc: (val) {},
-                                    hint: '',
-                                    maxLines: 6,
-                                    textEditingController: noteController,
-                                    text:
-                                    'هل هناك أي ملاحظة تودين مشاركتها معنا؟'),
-                                gapH20,
-                                ReusableButton(
-                                    btnText: 'صمم باقتي التجميلية',
-                                    onTapFunction: () async{
-                                      cont.convertListToString();
-                                      if(cont.selectedServicesString==''){
-                                        CommonWidgets.snackBar(
-                                            'error', 'عليك اختيار الخدمات التجميلية التي ترغبين بها');
-                                      }else if(_formKey.currentState!.validate()){
-                                        LoadingDialogHelper.showLoadingDialog();
-                                        var res=await addOrder(
-                                            balance: budgetController.text,
-                                            note: noteController.text ,
-                                            userId: id,
-                                            services: cont.selectedServicesString);
-                                        LoadingDialogHelper.hideLoading();
-                                        if (res['status'] == '1') {
-                                          CommonWidgets.snackBar(
-                                              'success', res['message']);
-                                        } else {
-                                          CommonWidgets.snackBar(
-                                              'error', res['data']);
-                                        }
-                                      }
-                                    },
-                                    width: deviceWidth,
-                                    height: deviceHeight * 0.06)
-                              ],
-                            ),
-                          ),
-                        ),
-
-                      ],
-                    ),
+                ),
+                SizedBox(height: deviceHeight*0.1,),
+                Container(
+                  color: Colors.black,
+                  width: deviceWidth,
+                  height: deviceHeight*0.25,
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 15,),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text(
+                        k6Phrase,
+                        style: TextStyle(
+                            color: Colors.white, fontSize: 16),
+                      ),
+                      SizedBox(
+                        height: deviceHeight*0.1,
+                        width: 100,
+                        child: const Divider(color: kBasicColor,),
+                      ),
+                      ReusableButton(
+                          btnText: 'visiting_website'.tr,
+                          isWhiteBg: true,
+                          onTapFunction: () async {
+                            final Uri url = Uri.parse(websiteUrl);
+                            if (!await launchUrl(url)) {
+                              throw Exception('Could not launch $url');
+                            }
+                          },
+                          width: 200,
+                          height: deviceHeight*0.06)
+                    ],
                   ),
-                  SizedBox(height: deviceHeight*0.1,),
-                  Container(
-                    color: Colors.black,
-                    width: deviceWidth,
-                    height: deviceHeight*0.25,
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 15,),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Text(
-                          k6Phrase,
-                          style: TextStyle(
-                              color: Colors.white, fontSize: 16),
-                        ),
-                        SizedBox(
-                          height: deviceHeight*0.1,
-                          width: 100,
-                          child: const Divider(color: kBasicColor,),
-                        ),
-                        ReusableButton(
-                            btnText: 'زيارة الموقع',
-                            isWhiteBg: true,
-                            onTapFunction: () async {
-                              final Uri url = Uri.parse(websiteUrl);
-                              if (!await launchUrl(url)) {
-                                throw Exception('Could not launch $url');
-                              }
-                            },
-                            width: 200,
-                            height: deviceHeight*0.06)
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    height: deviceHeight*0.1,),
-                  const ReusableFooter()
-                ],
-              ),
-            )),
-      );
+                ),
+                SizedBox(
+                  height: deviceHeight*0.1,),
+                const ReusableFooter()
+              ],
+            ),
+          ));
     });
   }
 }
@@ -398,9 +345,6 @@ class _ReusableServiceCardState extends State<ReusableServiceCard> {
                   )),
             ),
             Checkbox(
-              // checkColor: kBasicColor,
-              // activeColor: Colors.white,
-              // fillColor: MaterialStateProperty.resolveWith(getColor),
               value: cont.servicesListCheckBoxesValues[widget.index],
               onChanged: (bool? value) {
                 widget.onChangedFunc(value!);
@@ -447,11 +391,6 @@ class _ReusableSocialMediaCircleState extends State<ReusableSocialMediaCircle> {
             if (!await launchUrl(url)) {
               throw Exception('Could not launch $url');
             }
-          },
-          onLongPress: (){
-            // setState(() {
-            //   isLongPressed=true;
-            // });
           },
           child: Padding(
             padding:   EdgeInsets.all(isLongPressed?5:8), // Border radius

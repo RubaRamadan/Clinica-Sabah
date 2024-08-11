@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:untitled1/Backend/Auth/update_user.dart';
 import 'package:untitled1/Constants/gaps.dart';
 import 'package:untitled1/Locale_Memory/save_user_info_locally.dart';
@@ -50,11 +49,11 @@ class _VerificationScreenState extends State<VerificationScreen> {
               horizontal: 25, vertical: 50),
           child: Column(
             children: [
-              const Text('Verification',
-                style: TextStyle(color: Colors.black, fontSize: 25,fontWeight: FontWeight.bold),),
+                Text('verification'.tr,
+                style: const TextStyle(color: Colors.black, fontSize: 25,fontWeight: FontWeight.bold),),
               gapH32,
-              const Text('Enter the code sent to your number',
-                style: TextStyle(color: Colors.black, fontSize: 16),),
+               Text('enter_the_code'.tr,
+                style: const TextStyle(color: Colors.black, fontSize: 16),),
               gapH32,
               Padding(
                 padding: const EdgeInsets.only(left: 15.0),
@@ -81,7 +80,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
                         textEditingController: code1Controller,
                       validationFunc: (String? value){
                           if(value!.isEmpty){
-                            return 'required';
+                            return 'required'.tr;
                           }return null;
                       },
                         ),
@@ -95,7 +94,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
                         textEditingController: code2Controller,
                       validationFunc: (String? value){
                         if(value!.isEmpty){
-                          return 'required';
+                          return 'required'.tr;
                         }return null;
                       },
                         ),
@@ -109,7 +108,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
                         textEditingController: code3Controller,
                       validationFunc: (String? value){
                         if(value!.isEmpty){
-                          return 'required';
+                          return 'required'.tr;
                         }return null;
                       },
                         ),
@@ -125,12 +124,12 @@ class _VerificationScreenState extends State<VerificationScreen> {
                                 Get.to(() => const HomeScreen());
                               } else {
                                 CommonWidgets.snackBar(
-                                    'error', res['message']);
+                                    'error'.tr, res['message']);
                               }
                             }else{
                             LoadingDialogHelper.hideLoading();
                             CommonWidgets.snackBar(
-                                'error', 'This code is not correct');
+                                'error'.tr, 'incorrect_code'.tr);
                           }
                         }
                       },
@@ -138,7 +137,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
                         textEditingController: code4Controller,
                       validationFunc: (String? value){
                         if(value!.isEmpty){
-                          return 'required';
+                          return 'required'.tr;
                         }return null;
                       },
                         ),
@@ -159,12 +158,12 @@ class _VerificationScreenState extends State<VerificationScreen> {
                           Get.to(() => const HomeScreen());
                         } else {
                           CommonWidgets.snackBar(
-                              'error', res['message']);
+                              'error'.tr, res['message']);
                         }
                       }else{
                         LoadingDialogHelper.hideLoading();
                         CommonWidgets.snackBar(
-                            'error', 'This code is not correct');
+                            'error'.tr, 'incorrect_code'.tr);
                       }
                     }
                   },

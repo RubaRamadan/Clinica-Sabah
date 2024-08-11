@@ -1,22 +1,13 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:untitled1/Backend/Orders/add_order.dart';
 import 'package:untitled1/Screens/Authentication/login_screen.dart';
-import 'package:untitled1/Screens/add_order_screen.dart';
-import 'package:untitled1/Screens/responses.dart';
-import 'package:url_launcher/url_launcher.dart';
 import '../Constants/colors.dart';
 import '../Constants/const_lists.dart';
-import '../Constants/constants.dart';
 import '../Constants/gaps.dart';
 import '../Controller/ServicesController/services_controller.dart';
 import '../Locale_Memory/save_user_info_locally.dart';
-import '../Widgets/loading.dart';
-import '../Widgets/reusable_btn.dart';
 import '../Widgets/reusable_footer.dart';
-import '../Widgets/reusable_snak_bar.dart';
-import '../Widgets/reusable_text_field.dart';
 
 
 
@@ -43,95 +34,92 @@ class _HomeScreenState extends State<HomeScreen> {
     final deviceWidth = MediaQuery.of(context).size.width ;
     final deviceHeight = MediaQuery.of(context).size.height ;
     return GetBuilder<ServicesController>(builder: (cont) {
-      return Directionality(
-        textDirection: TextDirection.rtl,
-        child: Scaffold(
-            backgroundColor: kBgColor,
-            // floatingActionButton: Padding(
-            //   padding:
-            //   const EdgeInsets.symmetric(horizontal: 5.0, vertical: 10),
-            //   child: FloatingActionButton(
-            //     onPressed: () async {
-            //       Uri url = Uri(scheme: "tel", path: phoneNumber);
-            //       if (await canLaunchUrl(url)) {
-            //         await launchUrl(url);
-            //       } else {
-            //
-            //       }
-            //     },
-            //     shape: const CircleBorder(),
-            //     backgroundColor: kBasicColor,
-            //     child: const Icon(
-            //       Icons.phone,
-            //       color: Colors.white,
-            //     ),
-            //   ),
-            // ),
-            body: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  gapH10,
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Image.asset(
-                          "assets/images/logo.png",
-                          height:deviceHeight * 0.1,
-                          width:deviceWidth * 0.2,
-                          fit: BoxFit.contain,
-                        ),
-                        InkWell(
-                          onTap: () async {
-                            await saveUserInfoLocally('', '', '', '', '', '');
-                            Get.offAll(()=>const LoginScreen());
-                          },
-                          child: const Text('logout',style: TextStyle(
-                            // fontWeight: FontWeight.bold,
-                            fontSize: 16
-                          ),),
-                        )
-                      ],
-                    ),
+      return Scaffold(
+          backgroundColor: kBgColor,
+          // floatingActionButton: Padding(
+          //   padding:
+          //   const EdgeInsets.symmetric(horizontal: 5.0, vertical: 10),
+          //   child: FloatingActionButton(
+          //     onPressed: () async {
+          //       Uri url = Uri(scheme: "tel", path: phoneNumber);
+          //       if (await canLaunchUrl(url)) {
+          //         await launchUrl(url);
+          //       } else {
+          //
+          //       }
+          //     },
+          //     shape: const CircleBorder(),
+          //     backgroundColor: kBasicColor,
+          //     child: const Icon(
+          //       Icons.phone,
+          //       color: Colors.white,
+          //     ),
+          //   ),
+          // ),
+          body: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                gapH10,
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Image.asset(
+                        "assets/images/logo.png",
+                        height:deviceHeight * 0.1,
+                        width:deviceWidth * 0.2,
+                        fit: BoxFit.contain,
+                      ),
+                      InkWell(
+                        onTap: () async {
+                          await saveUserInfoLocally('', '', '', '', '', '');
+                          Get.offAll(()=>const LoginScreen());
+                        },
+                        child:   Text('logout'.tr,style: const TextStyle(
+                          // fontWeight: FontWeight.bold,
+                          fontSize: 16
+                        ),),
+                      )
+                    ],
                   ),
-                 SizedBox(
-                   height:  deviceHeight * 0.05,
-                   child: Center(
-                     child: Text(
-                       'أهلا بك $name',
-                       style: const TextStyle(fontSize: 21,fontWeight: FontWeight.bold),
-                     ),
+                ),
+               SizedBox(
+                 height:  deviceHeight * 0.05,
+                 child: Center(
+                   child: Text(
+                     '${'welcome'.tr} $name',
+                     style: const TextStyle(fontSize: 21,fontWeight: FontWeight.bold),
                    ),
                  ),
-                 const Divider(
-                   endIndent: 50,
-                   indent: 50,
-                   color: kBasicColor,
-                 ),
-                 Container(
-                      padding:const EdgeInsets.symmetric(horizontal: 15),
-                    height: deviceHeight * 0.61,
-                    child: GridView.count(
-                      crossAxisCount: 2,
-                        children: List.generate(options.length, (index) {
-                          return ReusableOptionCard(info: options[index],index: index,);
-                        }
+               ),
+               const Divider(
+                 endIndent: 50,
+                 indent: 50,
+                 color: kBasicColor,
+               ),
+               Container(
+                    padding:const EdgeInsets.symmetric(horizontal: 15),
+                  height: deviceHeight * 0.61,
+                  child: GridView.count(
+                    crossAxisCount: 2,
+                      children: List.generate(options.length, (index) {
+                        return ReusableOptionCard(info: options[index],index: index,);
+                      }
 
-                    )
-                  ),),
-                  const Divider(
-                    endIndent: 50,
-                    indent: 50,
-                    color: kBasicColor,
-                  ),
-                  gapH16,
-                  const ReusableFooter(),
-                ],
-              ),
-            )),
-      );
+                  )
+                ),),
+                const Divider(
+                  endIndent: 50,
+                  indent: 50,
+                  color: kBasicColor,
+                ),
+                gapH16,
+                const ReusableFooter(),
+              ],
+            ),
+          ));
     });
   }
 }
